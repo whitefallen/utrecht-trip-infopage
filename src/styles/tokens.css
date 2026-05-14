@@ -1,0 +1,18 @@
+:root {
+  --void:    #0A0A0F;
+  --void-2:  #131320;
+  --void-3:  #1B1B2A;
+  --bone:    #ECE6D2;
+  --bone-2:  #CCC6B0;
+  --bone-3:  #8E8975;
+  --ash:     #5A5666;
+
+  --acid:    oklch(0.92 0.22 130);   /* ≈ #C8FF1B */
+  --acid-2:  oklch(0.92 0.22 130 / 0.18);
+  --blood:   oklch(0.65 0.22 18);    /* ≈ #E33B4B */
+  --blood-2: oklch(0.65 0.22 18 / 0.18);
+
+  --display: "Unbounded", "Helvetica Neue", sans-serif;
+  --serif:   "EB Garamond", "Times New Roman", serif;
+  --mono:    "JetBrains Mono", ui-monospace, monospace;
+}

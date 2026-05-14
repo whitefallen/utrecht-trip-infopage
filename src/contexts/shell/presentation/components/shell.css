@@ -1,0 +1,220 @@
+/* ══════════════════════════════════════════ MARQUEE */
+.marquee { background: var(--void); border-top: 1px solid var(--bone-3); border-bottom: 1px solid var(--bone-3); padding: 10px 0; overflow: hidden; position: relative; }
+.marquee::before, .marquee::after { content: ""; position: absolute; top: 0; bottom: 0; width: 60px; z-index: 2; pointer-events: none; }
+.marquee::before { left: 0;  background: linear-gradient(90deg,  var(--void), transparent); }
+.marquee::after  { right: 0; background: linear-gradient(-90deg, var(--void), transparent); }
+.marquee__track { display: inline-flex; gap: 56px; white-space: nowrap; animation: marquee-roll 42s linear infinite; font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--bone-2); }
+.marquee__track span { display: inline-flex; align-items: center; gap: 22px; }
+.marquee__track span::before { content: "✷"; color: var(--acid); font-family: var(--display); font-size: 12px; }
+.marquee--fast .marquee__track { animation-duration: 26s; color: var(--blood); }
+.marquee--fast .marquee__track span::before { content: "×"; color: var(--blood); }
+@keyframes marquee-roll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ══════════════════════════════════════════ NAV */
+.topnav { position: sticky; top: 0; z-index: 60; background: rgba(10,10,15,0.86); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--void-3); }
+.topnav__inner  { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.topnav__brand  { display: flex; align-items: center; gap: 14px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--bone-2); }
+.topnav__brand svg { width: 28px; height: 28px; }
+.topnav__links  { display: flex; gap: 0; }
+.topnav__links a { padding: 10px 14px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bone-3); transition: color 140ms, background 140ms; }
+.topnav__links a:hover  { color: var(--acid); }
+.topnav__links a.active { color: var(--void); background: var(--acid); }
+
+@media (max-width: 880px) {
+  .topnav__links { display: none; }
+}
+
+/* ══════════════════════════════════════════ HERO */
+.hero { position: relative; padding: 72px 0 56px; overflow: hidden; }
+.hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 78% 22%, rgba(200,255,27,0.10), transparent 38%), radial-gradient(circle at 18% 84%, rgba(227,59,75,0.10), transparent 42%); pointer-events: none; }
+
+.hero__grid     { display: grid; grid-template-columns: 1fr 320px; gap: 56px; align-items: end; position: relative; }
+.hero__eyebrow  { display: flex; gap: 14px; align-items: center; font-family: var(--mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--bone-3); margin-bottom: 22px; }
+.hero__eyebrow-pip { display: inline-block; width: 8px; height: 8px; background: var(--acid); border-radius: 50%; }
+
+.hero__title    { font-family: var(--display); font-weight: 700; letter-spacing: -0.02em; line-height: 0.85; text-transform: uppercase; font-size: clamp(60px, 11vw, 168px); color: var(--bone); margin: 0; }
+.hero__title-row   { display: block; }
+.hero__title-lead  { font-family: var(--serif); font-style: italic; text-transform: lowercase; font-weight: 400; font-size: 0.55em; color: var(--bone-3); letter-spacing: 0.02em; line-height: 1; display: inline-block; transform: translateY(-0.18em); padding-right: 18px; }
+.hero__title-acid  { color: var(--acid); }
+.hero__title-blood { color: var(--blood); font-style: italic; font-family: var(--serif); font-weight: 500; text-transform: lowercase; letter-spacing: -0.01em; }
+
+.hero__meta     { border-left: 1px solid var(--void-3); padding-left: 24px; display: flex; flex-direction: column; gap: 22px; align-self: stretch; }
+.hero__meta-row { display: grid; grid-template-columns: 110px 1fr; gap: 12px; align-items: baseline; }
+.hero__meta-key { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bone-3); }
+.hero__meta-val { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--bone); }
+.hero__meta-val--num { font-family: var(--mono); font-style: normal; font-size: 14px; letter-spacing: 0.06em; }
+
+.hero__sub      { margin-top: 32px; max-width: 720px; font-size: 22px; font-style: italic; color: var(--bone-2); line-height: 1.4; }
+.hero__sub-drop { font-family: var(--display); font-style: normal; font-weight: 900; font-size: 84px; line-height: 0.75; float: left; padding: 6px 14px 0 0; color: var(--acid); }
+
+.hero__stats    { margin-top: 56px; display: grid; grid-template-columns: repeat(5,1fr); border-top: 1px solid var(--void-3); border-bottom: 1px solid var(--void-3); }
+.hero__stat     { padding: 20px 18px; border-left: 1px solid var(--void-3); }
+.hero__stat:first-child { border-left: 0; }
+.hero__stat-label  { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bone-3); }
+.hero__stat-value  { font-family: var(--display); font-weight: 700; font-size: 56px; line-height: 1; margin-top: 8px; color: var(--bone); }
+.hero__stat:nth-child(2) .hero__stat-value { color: var(--acid); }
+.hero__stat:nth-child(5) .hero__stat-value { color: var(--blood); }
+.hero__stat-sub    { display: block; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 14px; color: var(--bone-3); margin-top: 4px; }
+
+@media (max-width: 900px) {
+  .hero__grid                      { grid-template-columns: 1fr; gap: 32px; }
+  .hero__meta                      { border-left: 0; padding-left: 0; border-top: 1px solid var(--void-3); padding-top: 22px; }
+  .hero__stats                     { grid-template-columns: repeat(2,1fr); }
+  .hero__stat:nth-child(odd)       { border-left: 0; }
+  .hero__stat:nth-child(n+3)       { border-top: 1px solid var(--void-3); }
+  /* 5th stat alone on row 3 — span full width */
+  .hero__stat:last-child           { grid-column: 1 / -1; border-left: 0; }
+}
+
+@media (max-width: 720px) {
+  .hero                            { padding: 40px 0 28px; }
+  /* Scale title down so "FOUR QUIET" fits on one line at 375px */
+  .hero__title                     { font-size: clamp(38px, 10.5vw, 60px); }
+  .hero__sub                       { font-size: 18px; margin-top: 22px; }
+  .hero__sub-drop                  { font-size: 62px; }
+  .hero__stats                     { margin-top: 32px; }
+  .hero__stat-value                { font-size: 44px; }
+}
+
+/* ══════════════════════════════════════════ WHEEL */
+.wheel-section { padding: 72px 0; border-top: 1px solid var(--void-3); border-bottom: 1px solid var(--void-3); }
+.wheel__grid   { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.wheel__copy h2 { font-family: var(--display); font-weight: 700; font-size: clamp(40px, 5.4vw, 76px); line-height: 0.9; text-transform: uppercase; margin: 0 0 22px; letter-spacing: -0.015em; }
+.wheel__copy h2 em { font-style: italic; font-family: var(--serif); font-weight: 500; text-transform: lowercase; color: var(--acid); letter-spacing: -0.01em; }
+.wheel__copy p { font-style: italic; font-size: 19px; color: var(--bone-2); max-width: 520px; margin: 0 0 18px; }
+.wheel__legend { margin-top: 24px; display: flex; flex-direction: column; gap: 10px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bone-3); }
+.wheel__legend-row { display: grid; grid-template-columns: 36px 1fr auto; gap: 14px; align-items: center; }
+.wheel__legend-roman { font-family: var(--display); font-size: 20px; color: var(--bone); letter-spacing: 0; text-align: right; }
+.wheel__legend-row--key .wheel__legend-roman { color: var(--acid); }
+.wheel__legend-name { color: var(--bone); letter-spacing: 0.16em; }
+.wheel__legend-date { color: var(--bone-3); }
+.wheel__svg    { aspect-ratio: 1/1; width: 100%; max-width: 520px; justify-self: center; }
+
+@media (max-width: 900px) {
+  .wheel__grid { grid-template-columns: 1fr; gap: 32px; }
+  .wheel__svg  { max-width: 360px; }
+}
+
+@media (max-width: 720px) {
+  .wheel-section { padding: 48px 0; }
+  .wheel__svg    { max-width: 280px; }
+}
+
+/* ── Wheel interactive stops ── */
+.wheel__stop {
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+}
+
+/* Main group: scale from its own centre with a springy overshoot */
+.wheel__stop-main {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.wheel__stop:hover  .wheel__stop-main,
+.wheel__stop:focus-visible .wheel__stop-main { transform: scale(1.18); }
+.wheel__stop:active .wheel__stop-main        { transform: scale(0.94); transition-duration: 80ms; }
+
+/* Halo ring: expands outward and fades */
+.wheel__stop-halo {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  transform: scale(1);
+  fill: none;
+  pointer-events: none;
+  transition:
+    transform 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity   500ms ease;
+}
+.wheel__stop:hover  .wheel__stop-halo,
+.wheel__stop:focus-visible .wheel__stop-halo { opacity: 0.35; transform: scale(2.4); }
+
+/* Rite name label: fades in under the circle */
+.wheel__stop-label {
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+  transition: opacity 180ms ease;
+}
+.wheel__stop:hover  .wheel__stop-label,
+.wheel__stop:focus-visible .wheel__stop-label { opacity: 1; }
+
+/* ── Legend row links ── */
+.wheel__legend-row--link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  margin: -2px -6px;
+  padding: 2px 6px;
+  border-radius: 2px;
+  transition: background 140ms;
+}
+.wheel__legend-row--link:hover,
+.wheel__legend-row--link:focus-visible             { background: var(--void-3); }
+.wheel__legend-row--link:hover .wheel__legend-name,
+.wheel__legend-row--link:focus-visible .wheel__legend-name { color: var(--acid); }
+.wheel__legend-row--key.wheel__legend-row--link:hover .wheel__legend-name { color: var(--void); }
+
+/* ══════════════════════════════════════════ BENEDICTION */
+.benediction { padding: 120px 0 80px; text-align: center; border-top: 1px solid var(--void-3); position: relative; overflow: hidden; }
+.benediction::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 40%, rgba(200,255,27,0.10), transparent 50%); pointer-events: none; }
+.benediction__tag  { font-family: var(--mono); font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--bone-3); margin-bottom: 28px; }
+.benediction h2    { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: clamp(40px, 7vw, 92px); line-height: 1.05; margin: 0 auto; max-width: 16ch; color: var(--bone); }
+.benediction h2 em { font-style: normal; font-family: var(--display); font-weight: 700; text-transform: uppercase; color: var(--acid); }
+.benediction__meta { font-family: var(--mono); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--bone-3); line-height: 2; }
+
+/* ── Sigil back-to-top button ── */
+.benediction__sigil-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  margin: 36px auto 28px;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+}
+
+.benediction__sigil {
+  display: block;
+  width: 84px;
+  opacity: 0.7;
+  transition: opacity 220ms ease, transform 280ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.benediction__sigil-link:hover       .benediction__sigil,
+.benediction__sigil-link:focus-visible .benediction__sigil { opacity: 1; transform: scale(1.18); }
+.benediction__sigil-link:active      .benediction__sigil   { transform: scale(0.94); transition-duration: 80ms; }
+
+/* Outer halo ring — expands and fades on hover */
+.sigil-halo {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  transform: scale(1);
+  transition: transform 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 500ms ease;
+}
+.benediction__sigil-link:hover        .sigil-halo,
+.benediction__sigil-link:focus-visible .sigil-halo { opacity: 0.35; transform: scale(1.8); }
+
+/* "↑ return" hint — fades in below the sigil */
+.benediction__sigil-hint {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--bone-3);
+  opacity: 0;
+  transition: opacity 200ms ease;
+  pointer-events: none;
+  user-select: none;
+}
+.benediction__sigil-link:hover        .benediction__sigil-hint,
+.benediction__sigil-link:focus-visible .benediction__sigil-hint { opacity: 1; }
+
+@media (max-width: 720px) {
+  .benediction { padding: 64px 0 48px; }
+}

@@ -1,0 +1,32 @@
+.packlist { list-style: none; margin: 0; padding: 0; }
+.packlist__item {
+  display: grid; grid-template-columns: 28px 22px 1fr; gap: 12px;
+  padding: 9px 0; border-top: 1px dotted var(--void-3); align-items: center; cursor: pointer;
+}
+.packlist__item:first-child { border-top: 0; }
+.packlist__index  { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--bone-3); text-align: right; }
+.packlist__checkbox {
+  appearance: none; -webkit-appearance: none;
+  width: 18px; height: 18px; border: 1.5px solid var(--bone-3);
+  background: transparent; cursor: pointer; position: relative;
+  transition: background 120ms, border-color 120ms; flex-shrink: 0;
+}
+.packlist__checkbox:checked { background: var(--acid); border-color: var(--acid); }
+.packlist__checkbox:checked::after {
+  content: ""; position: absolute; left: 4px; top: 0;
+  width: 5px; height: 10px; border: solid var(--void);
+  border-width: 0 2.5px 2.5px 0; transform: rotate(45deg);
+}
+.packlist__label { cursor: pointer; font-style: italic; font-size: 15px; color: var(--bone-2); }
+.packlist__checkbox:checked ~ .packlist__label {
+  color: var(--bone-3); text-decoration: line-through; text-decoration-color: var(--acid);
+}
+
+.pack-progress { margin-top: 18px; }
+.pack-progress__bar-track { height: 4px; background: var(--void-3); }
+.pack-progress__bar-fill  { height: 100%; background: var(--acid); transition: width 240ms ease; }
+.pack-progress__meta {
+  margin-top: 10px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--bone-3);
+  display: flex; justify-content: space-between;
+}

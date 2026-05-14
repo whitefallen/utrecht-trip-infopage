@@ -1,0 +1,158 @@
+/* ─ PRINT STYLESHEET ──────────────────────────────────────────────────────
+   Utrecht Almanac · carry edition
+
+   White background, dark text, acid → forest green, blood → deep crimson.
+   Nav and marquees suppressed. Section page breaks. Widows / orphans
+   controlled. Packing checkboxes rendered as empty print boxes.
+───────────────────────────────────────────────────────────────────────── */
+
+@media print {
+
+  /* ── Page setup ── */
+  @page {
+    size: A4;
+    margin: 18mm 16mm 14mm;
+  }
+
+  /* ── Ink-saving colour overrides ── */
+  :root {
+    --void:    #ffffff;
+    --void-2:  #f7f6f2;
+    --void-3:  #d0cec6;
+    --bone:    #111110;
+    --bone-2:  #383735;
+    --bone-3:  #706e68;
+    --ash:     #9a9890;
+
+    /* Darker, ink-friendly accents */
+    --acid:    #4a6e00;
+    --acid-2:  rgba(74, 110, 0, 0.10);
+    --blood:   #9e1826;
+    --blood-2: rgba(158, 24, 38, 0.10);
+  }
+
+  html,
+  body {
+    background: white !important;
+    color: #111110;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── Suppress screen-only chrome ── */
+  .marquee,
+  .topnav { display: none !important; }
+
+  /* ── Kill decorative gradients ── */
+  .hero::before,
+  .benediction::before,
+  .forbid::before { display: none !important; }
+
+  /* ── No animations or transitions ── */
+  * { animation: none !important; transition: none !important; }
+
+  /* ── Section rhythm ── */
+  section.standard,
+  section.rite-section,
+  .wheel-section {
+    padding: 18pt 0;
+    border-color: var(--void-3);
+  }
+
+  /* ── Page breaks — one section per page ── */
+  #wheel      { break-before: page; }
+  #rites      { break-before: page; }
+  #triple     { break-before: page; }
+  #exits      { break-before: page; }
+  #evenings   { break-before: page; }
+  #forbidden  { break-before: page; }
+  #inventory  { break-before: page; }
+  .benediction { break-before: page; }
+
+  /* ── Avoid mid-element breaks ── */
+  .rite            { break-inside: avoid; }
+  .glyph-card      { break-inside: avoid; }
+  .exit            { break-inside: avoid; }
+  .vigil           { break-inside: avoid; }
+  .forbid          { break-inside: avoid; }
+  .pact__row       { break-inside: avoid; }
+  .packlist__item  { break-inside: avoid; }
+  .hero__stats     { break-inside: avoid; }
+  .triple-note     { break-inside: avoid; }
+
+  /* ── Unstick the sticky rail ── */
+  .rite__rail { position: static !important; }
+
+  /* ── Hero ── */
+  .hero { padding: 14pt 0 10pt; }
+
+  /* ── Today highlight stays readable on white ── */
+  .rite--today {
+    background: var(--acid-2) !important;
+    margin: 0;
+    padding: 10pt 0;
+  }
+
+  /* ── Remove dark card fills ── */
+  .glyph-card,
+  .ledger,
+  .forbid {
+    background: var(--void-2) !important;
+    border-color: var(--void-3) !important;
+  }
+
+  .glyph-card:hover   { transform: none; }
+  .exit:hover         { background: transparent; }
+  .exit:hover .exit__code { background: var(--void-3) !important; color: var(--bone) !important; }
+
+  /* ── Exit code cell ── */
+  .exit__code {
+    background: var(--void-3) !important;
+    color: var(--bone) !important;
+  }
+
+  /* ── Vigil borders ── */
+  .vigil { border-color: var(--void-3) !important; }
+
+  /* ── Triple note accent bar ── */
+  .triple-note { border-color: var(--acid) !important; }
+  .triple-note::before { background: var(--acid) !important; }
+
+  /* ── Marquee scrollbar (just in case rendered) ── */
+  .marquee__track { animation: none; }
+
+  /* ── Packing list: render checkboxes as empty print boxes ──
+     Items show as blank squares — user checks them off with a pen.      */
+  .packlist__checkbox {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12pt;
+    height: 12pt;
+    border: 1pt solid var(--bone-3) !important;
+    background: white !important;
+    border-radius: 0;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  /* Remove the CSS checkmark — it's paper now */
+  .packlist__checkbox:checked           { background: white !important; border-color: var(--bone-3) !important; }
+  .packlist__checkbox:checked::after    { display: none; }
+  /* Uncross struck-through labels */
+  .packlist__checkbox:checked ~ .packlist__label {
+    color: var(--bone-2) !important;
+    text-decoration: none;
+  }
+
+  /* Progress bar not meaningful on paper */
+  .pack-progress { display: none; }
+
+  /* ── Benediction ── */
+  .benediction { padding: 16pt 0 12pt; }
+  .benediction__sigil { opacity: 0.4; }
+
+  /* ── Links — don't append URLs ── */
+  a::after { content: none !important; }
+
+}

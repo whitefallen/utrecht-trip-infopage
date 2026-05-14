@@ -1,0 +1,1213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>UTR/4N · Trip Briefing · 05.07–09.07.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #F2E7CC;
+    --sand-2: #E9DCB7;
+    --sand-3: #DBC998;
+    --ink: #0B0B0E;
+    --ink-2: #2A2A30;
+    --muted: #6F6A5B;
+    --rule: #0B0B0E;
+    --signal: oklch(0.62 0.20 30);
+    --signal-ink: oklch(0.42 0.18 30);
+    --signal-soft: oklch(0.62 0.20 30 / 0.12);
+
+    --display: "Anton", "Helvetica Neue Condensed", Impact, sans-serif;
+    --body: "Archivo", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; background: var(--sand); }
+  body {
+    margin: 0;
+    background: var(--sand);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 15px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--ink); color: var(--sand); }
+
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+  @media (max-width: 720px) { .wrap { padding: 0 18px; } }
+
+  /* ——— Type primitives ——— */
+  .display { font-family: var(--display); font-weight: 400; letter-spacing: -0.005em; text-transform: uppercase; line-height: 0.86; }
+  .mono { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+  .red { color: var(--signal); }
+  .red-bg { background: var(--signal); color: var(--sand); }
+  .ink-bg { background: var(--ink); color: var(--sand); }
+  .strike { text-decoration: line-through; text-decoration-color: var(--signal); text-decoration-thickness: 2px; }
+
+  /* ——— Top bar: ticker ——— */
+  .ticker {
+    background: var(--ink);
+    color: var(--sand);
+    border-bottom: 3px solid var(--signal);
+    padding: 8px 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .ticker .track {
+    display: flex;
+    gap: 48px;
+    white-space: nowrap;
+    animation: roll 38s linear infinite;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .ticker .track span { display: inline-flex; align-items: center; gap: 16px; }
+  .ticker .track span::before {
+    content: ""; display: inline-block; width: 6px; height: 6px; background: var(--signal); border-radius: 50%;
+  }
+  @keyframes roll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ——— Top nav ——— */
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--sand);
+    border-bottom: 2px solid var(--ink);
+  }
+  .topnav-inner {
+    display: flex; align-items: stretch; justify-content: space-between;
+    height: 56px;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 12px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .brand .badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--signal); color: var(--sand);
+    font-family: var(--display); font-size: 16px;
+    line-height: 1;
+  }
+  .nav-links { display: flex; align-items: stretch; }
+  .nav-links a {
+    display: flex; align-items: center;
+    padding: 0 14px;
+    color: var(--ink);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border-left: 1px solid rgba(11,11,14,0.15);
+    transition: background 120ms, color 120ms;
+  }
+  .nav-links a:hover { background: var(--ink); color: var(--sand); }
+  .nav-links a.active { background: var(--signal); color: var(--sand); }
+  @media (max-width: 980px) {
+    .nav-links a { padding: 0 10px; font-size: 10px; letter-spacing: 0.1em; }
+  }
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+  }
+
+  /* ——— Hero ——— */
+  .hero {
+    border-bottom: 2px solid var(--ink);
+    position: relative;
+    padding: 36px 0 0;
+  }
+  .hero .grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 48px;
+    align-items: end;
+    padding-bottom: 32px;
+  }
+  .hero h1.display {
+    font-size: clamp(96px, 18vw, 280px);
+  }
+  .hero h1 .row1 { display: block; }
+  .hero h1 .row2 { display: block; color: var(--signal); }
+  .hero h1 .row3 { display: block; }
+  .hero .sub {
+    font-size: 16px;
+    max-width: 380px;
+    color: var(--ink-2);
+  }
+  .hero-meta {
+    border-left: 2px solid var(--ink);
+    padding-left: 24px;
+    display: flex; flex-direction: column; gap: 20px;
+  }
+  .hero-meta .row { display: grid; grid-template-columns: 100px 1fr; gap: 12px; align-items: baseline; }
+  .hero-meta .row .k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+  .hero-meta .row .v { font-family: var(--body); font-weight: 600; font-size: 14px; }
+  .hero-meta .row .v.big { font-family: var(--display); font-size: 32px; line-height: 1; letter-spacing: 0; }
+
+  /* Hero bottom rule + stats */
+  .hero-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-top: 2px solid var(--ink);
+  }
+  .hero-strip > div {
+    padding: 14px 16px;
+    border-left: 1px solid rgba(11,11,14,0.18);
+  }
+  .hero-strip > div:first-child { border-left: 0; }
+  .hero-strip .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+  .hero-strip .v { font-family: var(--display); font-size: 38px; line-height: 1; margin-top: 4px; }
+  .hero-strip .v small { font-family: var(--body); font-weight: 600; font-size: 12px; color: var(--ink-2); margin-left: 4px; vertical-align: 4px; }
+
+  @media (max-width: 900px) {
+    .hero .grid { grid-template-columns: 1fr; gap: 24px; padding-bottom: 24px; }
+    .hero-meta { border-left: 0; padding-left: 0; border-top: 2px solid var(--ink); padding-top: 20px; }
+    .hero-strip { grid-template-columns: repeat(2, 1fr); }
+    .hero-strip > div:nth-child(odd) { border-left: 0; }
+    .hero-strip > div:not(:nth-child(-n+2)) { border-top: 1px solid rgba(11,11,14,0.18); }
+  }
+
+  /* ——— Section ——— */
+  section { border-bottom: 2px solid var(--ink); padding: 0; }
+  .sec-head {
+    display: grid;
+    grid-template-columns: 200px 1fr auto;
+    align-items: end;
+    gap: 24px;
+    padding: 40px 0 32px;
+    border-bottom: 1px solid var(--ink);
+  }
+  .sec-head .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .sec-head .tag::before {
+    content: ""; display: inline-block; width: 18px; height: 18px;
+    background: var(--signal);
+  }
+  .sec-head h2 { margin: 0; font-family: var(--display); font-size: clamp(40px, 7vw, 96px); line-height: 0.9; letter-spacing: -0.01em; text-transform: uppercase; }
+  .sec-head h2 em { font-style: normal; color: var(--signal); }
+  .sec-head .stamp {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+    padding: 6px 10px;
+    text-transform: uppercase;
+    transform: rotate(-2deg);
+    white-space: nowrap;
+  }
+  .sec-body { padding: 36px 0 56px; }
+  @media (max-width: 820px) {
+    .sec-head { grid-template-columns: 1fr; gap: 12px; padding-top: 28px; }
+    .sec-head .stamp { justify-self: start; }
+    .sec-body { padding: 28px 0 40px; }
+  }
+
+  /* ——— Route map (under hero) ——— */
+  .route {
+    background: var(--sand-2);
+    border-bottom: 2px solid var(--ink);
+    padding: 32px 0 28px;
+    overflow-x: auto;
+  }
+  .route-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    min-width: 720px;
+    position: relative;
+  }
+  .route-line {
+    position: absolute;
+    top: 18px;
+    left: 10%;
+    right: 10%;
+    height: 4px;
+    background: var(--ink);
+    z-index: 1;
+  }
+  .stop {
+    position: relative;
+    z-index: 2;
+    padding: 0 16px 8px;
+    text-align: center;
+  }
+  .stop .dot {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--sand);
+    border: 4px solid var(--ink);
+    margin: 0 auto 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--display); font-size: 20px; line-height: 1;
+  }
+  .stop.is-key .dot { background: var(--signal); color: var(--sand); border-color: var(--ink); }
+  .stop.is-today .dot { background: var(--ink); color: var(--signal); }
+  .stop .date { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; color: var(--muted); }
+  .stop .name { font-family: var(--display); font-size: 22px; line-height: 1; margin-top: 4px; text-transform: uppercase; }
+  .stop .lbl { font-family: var(--body); font-size: 12px; font-weight: 600; color: var(--ink-2); margin-top: 4px; }
+
+  /* ——— Day station cards ——— */
+  .stations { display: flex; flex-direction: column; gap: 0; }
+  .station {
+    display: grid;
+    grid-template-columns: 140px 1fr 340px;
+    gap: 0;
+    border-top: 1px solid var(--ink);
+    background: var(--sand);
+  }
+  .station:first-child { border-top: 0; }
+  .station.is-today { background: var(--signal-soft); }
+  .station .col {
+    padding: 28px 24px;
+    border-left: 1px solid rgba(11,11,14,0.2);
+  }
+  .station .col:first-child { border-left: 0; }
+  .station .col.left { display: flex; flex-direction: column; gap: 6px; }
+  .station .col.left .stopnum {
+    font-family: var(--display);
+    font-size: 84px;
+    line-height: 0.85;
+    text-transform: uppercase;
+  }
+  .station.is-key .col.left .stopnum { color: var(--signal); }
+  .station .col.left .meta-date { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; color: var(--ink); text-transform: uppercase; }
+  .station .col.left .badge {
+    display: inline-block;
+    margin-top: 6px;
+    align-self: flex-start;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    background: var(--ink);
+    color: var(--sand);
+  }
+  .station.is-key .col.left .badge { background: var(--signal); }
+  .station .col.mid h3 {
+    font-family: var(--display);
+    font-size: clamp(30px, 3.4vw, 44px);
+    line-height: 0.92;
+    margin: 0 0 10px;
+    text-transform: uppercase;
+  }
+  .station .col.mid h3 em { font-style: normal; color: var(--signal); }
+  .station .col.mid p { color: var(--ink-2); font-size: 15px; max-width: 56ch; }
+  .station .col.right {
+    background: var(--sand-2);
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .station .col.right .rh {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .station .col.right ul {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-direction: column;
+  }
+  .station .col.right li {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 12px;
+    padding: 8px 0;
+    border-top: 1px dashed rgba(11,11,14,0.25);
+    font-size: 14px;
+    color: var(--ink-2);
+  }
+  .station .col.right li:first-child { border-top: 0; }
+  .station .col.right li .t {
+    font-family: var(--mono); font-size: 11px; color: var(--ink); padding-top: 2px;
+  }
+  .station .col.right li b { color: var(--ink); font-weight: 700; }
+  @media (max-width: 980px) {
+    .station { grid-template-columns: 110px 1fr; }
+    .station .col.right { grid-column: 1 / -1; border-left: 0; border-top: 1px solid rgba(11,11,14,0.2); }
+    .station .col.left .stopnum { font-size: 64px; }
+  }
+  @media (max-width: 600px) {
+    .station { grid-template-columns: 1fr; }
+    .station .col { padding: 20px 16px; }
+    .station .col.left { flex-direction: row; align-items: baseline; gap: 14px; }
+    .station .col.left .stopnum { font-size: 56px; }
+    .station .col.right li { grid-template-columns: 48px 1fr; }
+  }
+
+  /* ——— Friend day: 3 ops cards ——— */
+  .ops {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 2px solid var(--ink);
+  }
+  .ops .op {
+    padding: 28px 24px 24px;
+    border-left: 2px solid var(--ink);
+    display: flex; flex-direction: column; gap: 14px;
+    position: relative;
+    background: var(--sand);
+  }
+  .ops .op:first-child { border-left: 0; }
+  .ops .op .opnum {
+    font-family: var(--display);
+    font-size: 96px;
+    line-height: 0.85;
+    color: var(--signal);
+  }
+  .ops .op .label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    display: inline-flex; gap: 8px; align-items: center;
+  }
+  .ops .op .label::before {
+    content: ""; width: 10px; height: 10px; background: var(--ink);
+  }
+  .ops .op .title {
+    font-family: var(--display);
+    font-size: 32px;
+    line-height: 0.9;
+    text-transform: uppercase;
+  }
+  .ops .op .title em { font-style: normal; color: var(--signal); }
+  .ops .op .desc { color: var(--ink-2); font-size: 14px; }
+  .ops .op .specs {
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px dashed rgba(11,11,14,0.25);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px 12px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .ops .op .specs b { color: var(--ink); font-weight: 700; letter-spacing: 0.04em; text-transform: none; }
+  @media (max-width: 900px) {
+    .ops { grid-template-columns: 1fr; }
+    .ops .op { border-left: 0; border-top: 2px solid var(--ink); }
+    .ops .op:first-child { border-top: 0; }
+  }
+
+  .ops-note {
+    margin-top: 24px;
+    padding: 24px;
+    background: var(--ink);
+    color: var(--sand);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 32px;
+    border: 2px solid var(--ink);
+    border-top: 0;
+  }
+  .ops-note .lhs { font-family: var(--display); font-size: 44px; line-height: 0.9; text-transform: uppercase; }
+  .ops-note .lhs em { font-style: normal; color: var(--signal); }
+  .ops-note .rhs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 20px; }
+  .ops-note .rhs > div .k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: rgba(242,231,204,0.6); text-transform: uppercase; margin-bottom: 4px; }
+  .ops-note .rhs > div .v { font-size: 13px; color: rgba(242,231,204,0.9); }
+  @media (max-width: 820px) {
+    .ops-note { grid-template-columns: 1fr; gap: 18px; }
+    .ops-note .rhs { grid-template-columns: 1fr; }
+  }
+
+  /* ——— Day trip lines ——— */
+  .lines {
+    display: flex; flex-direction: column; gap: 0;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+  }
+  .line {
+    display: grid;
+    grid-template-columns: 56px 1fr 160px 220px 120px;
+    gap: 0;
+    align-items: center;
+    border-top: 1px solid rgba(11,11,14,0.25);
+    transition: background 140ms;
+  }
+  .line:first-child { border-top: 0; }
+  .line:hover { background: var(--sand-2); }
+  .line > div { padding: 18px 16px; }
+  .line .code {
+    background: var(--signal);
+    color: var(--sand);
+    font-family: var(--display);
+    font-size: 28px;
+    line-height: 1;
+    text-align: center;
+    height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    text-transform: uppercase;
+  }
+  .line .name {
+    font-family: var(--display);
+    font-size: 32px;
+    line-height: 0.95;
+    text-transform: uppercase;
+  }
+  .line .name em { font-style: normal; color: var(--signal); }
+  .line .why { font-size: 13px; color: var(--ink-2); padding-right: 24px; }
+  .line .time { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); }
+  .line .time b { display: block; font-family: var(--display); font-size: 22px; letter-spacing: 0; line-height: 1; margin-top: 4px; color: var(--ink); }
+  .line .fare { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--ink); text-align: right; text-transform: uppercase; }
+  .line .fare b { display: block; font-family: var(--display); font-size: 22px; letter-spacing: 0; margin-top: 2px; line-height: 1; }
+  @media (max-width: 980px) {
+    .line { grid-template-columns: 48px 1fr; }
+    .line .why { grid-column: 1 / -1; padding-top: 0; padding-left: 64px; padding-right: 16px; }
+    .line .time, .line .fare { grid-column: 1 / -1; padding-left: 64px; padding-right: 16px; padding-top: 0; text-align: left; }
+    .line .fare { padding-bottom: 18px; }
+  }
+
+  /* ——— Quiet ideas ——— */
+  .quiet {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+  }
+  .quiet .q {
+    border-left: 1px solid rgba(11,11,14,0.25);
+    padding: 28px 22px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .quiet .q:first-child { border-left: 0; }
+  .quiet .q .qn { font-family: var(--display); font-size: 52px; line-height: 0.9; color: var(--signal); }
+  .quiet .q h4 { font-family: var(--display); font-size: 24px; line-height: 0.95; text-transform: uppercase; margin: 0; }
+  .quiet .q p { font-size: 14px; color: var(--ink-2); }
+  @media (max-width: 900px) { .quiet { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .quiet { grid-template-columns: 1fr; } .quiet .q { border-left: 0; border-top: 1px solid rgba(11,11,14,0.25); } .quiet .q:first-child { border-top: 0; } }
+
+  /* ——— Skip stamps ——— */
+  .skips {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .skip-card {
+    border: 2px solid var(--ink);
+    padding: 22px 22px 24px;
+    position: relative;
+    background: var(--sand);
+  }
+  .skip-card .x-stamp {
+    position: absolute;
+    top: 14px; right: 14px;
+    width: 64px; height: 64px;
+    border: 2.5px solid var(--signal);
+    border-radius: 50%;
+    color: var(--signal);
+    font-family: var(--display);
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: flex; align-items: center; justify-content: center;
+    transform: rotate(-12deg);
+    line-height: 1;
+    text-align: center;
+  }
+  .skip-card h4 {
+    font-family: var(--display);
+    font-size: 30px;
+    line-height: 0.92;
+    text-transform: uppercase;
+    margin: 0 80px 10px 0;
+  }
+  .skip-card h4 .strike { text-decoration: line-through; text-decoration-color: var(--signal); text-decoration-thickness: 3px; }
+  .skip-card p { font-size: 14px; color: var(--ink-2); }
+  @media (max-width: 980px) { .skips { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 620px) { .skips { grid-template-columns: 1fr; } }
+
+  /* ——— Manifest (practical + pack) ——— */
+  .manifest {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 0;
+    border: 2px solid var(--ink);
+  }
+  .manifest .col { padding: 28px; }
+  .manifest .col + .col { border-left: 2px solid var(--ink); }
+  .manifest h4 {
+    font-family: var(--display);
+    font-size: 26px;
+    line-height: 1;
+    text-transform: uppercase;
+    margin: 0 0 16px;
+    display: flex; align-items: baseline; justify-content: space-between;
+  }
+  .manifest h4 .num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; color: var(--muted); }
+  .pact-rows { display: flex; flex-direction: column; }
+  .pact-rows .row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 16px;
+    padding: 12px 0;
+    border-top: 1px dashed rgba(11,11,14,0.25);
+    font-size: 14px;
+    color: var(--ink-2);
+  }
+  .pact-rows .row:first-child { border-top: 0; }
+  .pact-rows .row .k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); }
+  .pact-rows .row b { color: var(--ink); font-weight: 700; }
+
+  .pack-list { list-style: none; margin: 0; padding: 0; }
+  .pack-list li {
+    display: flex; align-items: center; gap: 12px;
+    padding: 8px 0;
+    border-top: 1px dashed rgba(11,11,14,0.25);
+  }
+  .pack-list li:first-child { border-top: 0; }
+  .pack-list li label {
+    display: flex; align-items: center; gap: 12px; cursor: pointer;
+    font-size: 14px; color: var(--ink-2); width: 100%;
+  }
+  .pack-list input {
+    appearance: none; -webkit-appearance: none;
+    width: 18px; height: 18px;
+    border: 2px solid var(--ink);
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    transition: background 120ms;
+  }
+  .pack-list input:checked { background: var(--signal); border-color: var(--signal); }
+  .pack-list input:checked::after {
+    content: ""; position: absolute;
+    left: 4px; top: 0px; width: 5px; height: 10px;
+    border: solid var(--sand); border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
+  }
+  .pack-list .n { font-family: var(--mono); font-size: 11px; color: var(--muted); width: 24px; }
+  .pack-list input:checked ~ .lbl { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--muted); }
+  .pack-bar-wrap { margin-top: 16px; }
+  .pack-bar { height: 8px; background: var(--sand-3); position: relative; border: 2px solid var(--ink); }
+  .pack-bar i { display: block; height: 100%; background: var(--signal); width: 0%; transition: width 240ms ease; }
+  .pack-meta {
+    margin-top: 8px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex; justify-content: space-between;
+  }
+  @media (max-width: 900px) {
+    .manifest { grid-template-columns: 1fr; }
+    .manifest .col + .col { border-left: 0; border-top: 2px solid var(--ink); }
+  }
+
+  /* ——— Footer ——— */
+  footer { padding: 56px 0 64px; background: var(--ink); color: var(--sand); }
+  footer .row { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+  footer .sig { font-family: var(--display); font-size: clamp(48px, 8vw, 120px); line-height: 0.88; text-transform: uppercase; }
+  footer .sig em { font-style: normal; color: var(--signal); }
+  footer .meta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(242,231,204,0.7); text-align: right; line-height: 1.8; }
+
+  /* ——— Util ——— */
+  .ink2 { color: var(--ink-2); }
+</style>
+</head>
+<body>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker" aria-hidden="true">
+  <div class="track">
+    <span>LINE U7 · UTRECHT 4 NIGHTS</span>
+    <span>DEPART 05.07.26 · RETURN 09.07.26</span>
+    <span>PAX 01 · MODE SLOW</span>
+    <span>BED BY 23:00</span>
+    <span>NO BOATS · NO MUSEUMS · NO CLUBS</span>
+    <span>PANCAKES · KIBBELING · BOWLING</span>
+    <span>LINE U7 · UTRECHT 4 NIGHTS</span>
+    <span>DEPART 05.07.26 · RETURN 09.07.26</span>
+    <span>PAX 01 · MODE SLOW</span>
+    <span>BED BY 23:00</span>
+    <span>NO BOATS · NO MUSEUMS · NO CLUBS</span>
+    <span>PANCAKES · KIBBELING · BOWLING</span>
+  </div>
+</div>
+
+<!-- ============ NAV ============ -->
+<nav class="topnav">
+  <div class="wrap topnav-inner">
+    <div class="brand">
+      <span class="badge">U</span>
+      <span>UTR · 4N · BRIEFING</span>
+    </div>
+    <div class="nav-links" id="nav-links">
+      <a href="#route">Route</a>
+      <a href="#stops">Stops</a>
+      <a href="#ops">Ops</a>
+      <a href="#lines">Lines</a>
+      <a href="#evenings">Evenings</a>
+      <a href="#skips">Skips</a>
+      <a href="#manifest">Manifest</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <div class="mono" style="margin-bottom: 14px;">Briefing 01 · 4 Nights · Solo</div>
+        <h1 class="display">
+          <span class="row1">Utrecht</span>
+          <span class="row2">Four</span>
+          <span class="row3">Nights.</span>
+        </h1>
+        <p class="sub" style="margin-top: 22px;">
+          A small field briefing for a solo, sober, early-to-bed trip. Canals at water-level, brick towers, one friend, one big day of pancakes and bowling. Pace: deliberate. Volume: low.
+        </p>
+      </div>
+
+      <aside class="hero-meta">
+        <div class="row"><div class="k">Depart</div><div class="v big num">05.07.26</div></div>
+        <div class="row"><div class="k">Return</div><div class="v big num">09.07.26</div></div>
+        <div class="row"><div class="k">Duration</div><div class="v">4 nights · 5 days</div></div>
+        <div class="row"><div class="k">Base</div><div class="v">Utrecht, Centrum</div></div>
+        <div class="row"><div class="k">Mode</div><div class="v">Walk &amp; train · no boats</div></div>
+        <div class="row"><div class="k">Pax</div><div class="v">01 · solo, 30, single, M</div></div>
+      </aside>
+    </div>
+
+    <div class="hero-strip">
+      <div><div class="lbl">Nights</div><div class="v">04</div></div>
+      <div><div class="lbl">Stops</div><div class="v">05</div></div>
+      <div><div class="lbl">Friend Day</div><div class="v">01</div></div>
+      <div><div class="lbl">Day Trip</div><div class="v">01</div></div>
+      <div><div class="lbl">Cruises</div><div class="v">00<small>nope</small></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ ROUTE MAP ============ -->
+<section id="route">
+  <div class="route">
+    <div class="wrap">
+      <div class="mono" style="margin-bottom: 18px; display: flex; justify-content: space-between; align-items: baseline;">
+        <span>Line U7 · Service Map</span>
+        <span class="ink2">Hover a stop · scroll for detail</span>
+      </div>
+      <div class="route-grid">
+        <div class="route-line" aria-hidden="true"></div>
+        <div class="stop" data-date="2026-07-05">
+          <div class="dot">01</div>
+          <div class="date">05 JUL · SUN</div>
+          <div class="name">Arrive</div>
+          <div class="lbl">Drop · drift · sleep</div>
+        </div>
+        <div class="stop is-key" data-date="2026-07-06">
+          <div class="dot">02</div>
+          <div class="date">06 JUL · MON</div>
+          <div class="name">Friend</div>
+          <div class="lbl">Pancakes · fish · bowls</div>
+        </div>
+        <div class="stop" data-date="2026-07-07">
+          <div class="dot">03</div>
+          <div class="date">07 JUL · TUE</div>
+          <div class="name">Trip</div>
+          <div class="lbl">Train to a smaller town</div>
+        </div>
+        <div class="stop" data-date="2026-07-08">
+          <div class="dot">04</div>
+          <div class="date">08 JUL · WED</div>
+          <div class="name">Slow</div>
+          <div class="lbl">Dom · shops · park</div>
+        </div>
+        <div class="stop" data-date="2026-07-09">
+          <div class="dot">05</div>
+          <div class="date">09 JUL · THU</div>
+          <div class="name">Home</div>
+          <div class="lbl">Coffee · check out · go</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STOPS / DAYS ============ -->
+<section id="stops">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="tag">02 · Day-by-day</div>
+      <h2>Five <em>stops</em> on the line.</h2>
+      <div class="stamp">Approx. plan · pivot freely</div>
+    </div>
+  </div>
+
+  <div class="stations" id="stations">
+
+    <!-- STOP 01 -->
+    <article class="station" data-date="2026-07-05">
+      <div class="col left">
+        <span class="meta-date">05 JUL · SUN</span>
+        <div class="stopnum">01</div>
+        <span class="badge">Arrival</span>
+      </div>
+      <div class="col mid">
+        <h3>Drop the bag. Walk <em>once</em> around the centre.</h3>
+        <p>No agenda after check-in beyond proving the apartment exists, raiding a supermarket for water and breakfast, and one slow loop along the Oudegracht. Eat something warm. Sleep by ten. The trip starts properly tomorrow.</p>
+      </div>
+      <div class="col right">
+        <div class="rh">Schedule · Sun</div>
+        <ul>
+          <li><span class="t">14:00</span><div><b>Arrive · check in.</b> Charge phone. Find the quirks.</div></li>
+          <li><span class="t">15:30</span><div><b>Supermarket run.</b> Water, fruit, yogurt, stroopwafels.</div></li>
+          <li><span class="t">16:30</span><div><b>Orientation loop.</b> Domplein → Oudegracht → Lepelenburg.</div></li>
+          <li><span class="t">18:30</span><div><b>Easy dinner.</b> Bitterballen + soup. Nothing big.</div></li>
+          <li><span class="t">21:00</span><div><b>Base · shower · lights out 22:30.</b></div></li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- STOP 02 -->
+    <article class="station is-key" data-date="2026-07-06">
+      <div class="col left">
+        <span class="meta-date">06 JUL · MON</span>
+        <div class="stopnum">02</div>
+        <span class="badge">Friend Day</span>
+      </div>
+      <div class="col mid">
+        <h3>Pancakes. Kibbeling. <em>Bowling.</em></h3>
+        <p>The day a local takes over. Meet mid-morning, eat your way down to bowling shoes, let him pick the route home. Full ops briefing in section 03 below — this is the trip's anchor day, don't crowd it.</p>
+      </div>
+      <div class="col right">
+        <div class="rh">Schedule · Mon</div>
+        <ul>
+          <li><span class="t">10:30</span><div><b>Meet · coffee.</b> Somewhere on the wharves.</div></li>
+          <li><span class="t">12:00</span><div><b>All-you-can-eat pancakes.</b> Pace yourself.</div></li>
+          <li><span class="t">14:30</span><div><b>Required walk.</b> Canal loop. Aid digestion.</div></li>
+          <li><span class="t">16:30</span><div><b>Kibbeling cone.</b> Standing up. Lemon &amp; garlic sauce.</div></li>
+          <li><span class="t">19:30</span><div><b>Bowling · 2 games.</b> Loser buys fries.</div></li>
+          <li><span class="t">22:30</span><div><b>Goodbye. Home. Sleep.</b></div></li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- STOP 03 -->
+    <article class="station" data-date="2026-07-07">
+      <div class="col left">
+        <span class="meta-date">07 JUL · TUE</span>
+        <div class="stopnum">03</div>
+        <span class="badge">Day Trip</span>
+      </div>
+      <div class="col mid">
+        <h3>Train to <em>somewhere smaller.</em></h3>
+        <p>Utrecht is the rail spine of the Netherlands — almost everything worth seeing is under an hour out. Pick one line from section 04 (no boats required). Back in Utrecht by sunset so you sleep in your own bed.</p>
+      </div>
+      <div class="col right">
+        <div class="rh">Schedule · Tue</div>
+        <ul>
+          <li><span class="t">09:00</span><div><b>Breakfast at base.</b> Yesterday's groceries.</div></li>
+          <li><span class="t">09:45</span><div><b>Walk to Utrecht Centraal.</b> Contactless taps in.</div></li>
+          <li><span class="t">10:15</span><div><b>Train out.</b> Window seat. Watch the polders.</div></li>
+          <li><span class="t">11:00</span><div><b>Arrive · coffee · wander.</b></div></li>
+          <li><span class="t">13:00</span><div><b>Sit-down regional lunch.</b></div></li>
+          <li><span class="t">17:00</span><div><b>Back to Utrecht.</b> Soft dinner. Book.</div></li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- STOP 04 -->
+    <article class="station" data-date="2026-07-08">
+      <div class="col left">
+        <span class="meta-date">08 JUL · WED</span>
+        <div class="stopnum">04</div>
+        <span class="badge">Slow Utrecht</span>
+      </div>
+      <div class="col mid">
+        <h3>Streets, towers, <em>light shopping.</em></h3>
+        <p>Last full day. Climb the Dom Tower before your legs catch on; meander Twijnstraat and Schoutenstraat; siesta in a park; end with the canal lit at dusk. Pack tonight, not tomorrow.</p>
+      </div>
+      <div class="col right">
+        <div class="rh">Schedule · Wed</div>
+        <ul>
+          <li><span class="t">09:30</span><div><b>Dom Tower climb · 465 steps.</b> Book the slot.</div></li>
+          <li><span class="t">11:30</span><div><b>Coffee &amp; pastry.</b> Side-street café.</div></li>
+          <li><span class="t">12:30</span><div><b>Shop loop.</b> Twijnstraat → Vismarkt → Schoutenstraat.</div></li>
+          <li><span class="t">15:00</span><div><b>Park hour.</b> Wilhelminapark or Griftpark.</div></li>
+          <li><span class="t">19:00</span><div><b>Wharf-level dinner.</b> Slow plates · gold light.</div></li>
+          <li><span class="t">22:00</span><div><b>Pack.</b> Future you will be grateful.</div></li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- STOP 05 -->
+    <article class="station" data-date="2026-07-09">
+      <div class="col left">
+        <span class="meta-date">09 JUL · THU</span>
+        <div class="stopnum">05</div>
+        <span class="badge">Departure</span>
+      </div>
+      <div class="col mid">
+        <h3>Coffee · check out · <em>go home.</em></h3>
+        <p>Don't add anything to today. Build an absurd buffer at Centraal. Buy one stroopwafel for the train. Look out the window the whole way back.</p>
+      </div>
+      <div class="col right">
+        <div class="rh">Schedule · Thu</div>
+        <ul>
+          <li><span class="t">08:30</span><div><b>Last breakfast.</b> Whatever's left.</div></li>
+          <li><span class="t">10:00</span><div><b>Check out.</b> Photograph the meter.</div></li>
+          <li><span class="t">10:30</span><div><b>Last walk · 30 min · no phone.</b></div></li>
+          <li><span class="t">11:30</span><div><b>To Centraal.</b> Board. Leave.</div></li>
+        </ul>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ OPS / FRIEND DAY ============ -->
+<section id="ops">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="tag">03 · Friend Day Ops</div>
+      <h2>Three <em>operations.</em></h2>
+      <div class="stamp">Monday 06.07 · with local</div>
+    </div>
+
+    <div class="ops">
+      <div class="op">
+        <div class="label">Op-01 · Lunch</div>
+        <div class="opnum">01</div>
+        <div class="title">All-you-can-<em>eat pancakes</em></div>
+        <div class="desc">Pannenkoeken — thin, plate-wide, savoury and sweet. Start cheese &amp; bacon, then apple &amp; cinnamon. Two is a meal; three is hubris. Order one of each rather than two of the same.</div>
+        <div class="specs">
+          <div>Window<br/><b>12:00–14:30</b></div>
+          <div>Cost<br/><b>€20 p.p.</b></div>
+          <div>Tactic<br/><b>Variety, not volume</b></div>
+          <div>Risk<br/><b>Food coma</b></div>
+        </div>
+      </div>
+      <div class="op">
+        <div class="label">Op-02 · Snack</div>
+        <div class="opnum">02</div>
+        <div class="title"><em>Kibbeling</em> on the wharf</div>
+        <div class="desc">Battered cod from a viskraam — paper cone, hot, garlic-mayo. Best from a market stall, eaten standing, leaning over the canal. Order knoflooksaus on the side; the default white sauce is bland.</div>
+        <div class="specs">
+          <div>Window<br/><b>16:00–17:30</b></div>
+          <div>Cost<br/><b>€7 p.p.</b></div>
+          <div>Sauce<br/><b>Garlic, not white</b></div>
+          <div>Splash<br/><b>Lean &amp; bite</b></div>
+        </div>
+      </div>
+      <div class="op">
+        <div class="label">Op-03 · Evening</div>
+        <div class="opnum">03</div>
+        <div class="title">Bowling, <em>two games</em></div>
+        <div class="desc">Indoor, cheap, weather-immune. Two games is plenty; fries and a soft drink between. House shoes mandatory — bring clean socks. Monday evenings are usually walk-in.</div>
+        <div class="specs">
+          <div>Window<br/><b>19:30–22:30</b></div>
+          <div>Cost<br/><b>€25 p.p.</b></div>
+          <div>Pace<br/><b>2 games max</b></div>
+          <div>Socks<br/><b>Bring spare</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ops-note">
+      <div class="lhs">The good Dutch days are <em>simple food</em> eaten with someone you like.</div>
+      <div class="rhs">
+        <div><div class="k">Pay it forward</div><div class="v">Cover one of the three. Your friend chose the day; you pay the round that surprises them.</div></div>
+        <div><div class="k">All-in budget</div><div class="v">€55–70 per person. Cash is optional — Dutch card terminals are everywhere.</div></div>
+        <div><div class="k">Plan B if raining</div><div class="v">Skip the canal walk between Op-01 and Op-02; move to a café and play boardgames instead.</div></div>
+        <div><div class="k">Photograph nothing</div><div class="v">Or one shot, max, of the kibbeling cone. The day is not for the grid.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LINES / DAY TRIPS ============ -->
+<section id="lines">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="tag">04 · Day Trip Lines</div>
+      <h2>An hour by train, <em>a different country.</em></h2>
+      <div class="stamp">Pick one · Tuesday 07.07</div>
+    </div>
+
+    <div class="lines">
+      <div class="line">
+        <div class="code">A</div>
+        <div class="name">Amers<em>foort</em></div>
+        <div class="time">From UT Centraal<b>15 min</b></div>
+        <div class="why">Miniature medieval centre. The Koppelpoort watergate looks like a storybook drew it. Quieter, walkable in two hours.</div>
+        <div class="fare">Fare<b>€8</b></div>
+      </div>
+      <div class="line">
+        <div class="code">B</div>
+        <div class="name">Gouda <em>(the cheese)</em></div>
+        <div class="time">From UT Centraal<b>50 min</b></div>
+        <div class="why">Thursday cheese market, syrup-waffle origin town, 15c town hall in the square. Eat one warm stroopwafel at the source.</div>
+        <div class="fare">Fare<b>€11</b></div>
+      </div>
+      <div class="line">
+        <div class="code">C</div>
+        <div class="name">Den <em>Bosch</em></div>
+        <div class="time">From UT Centraal<b>60 min</b></div>
+        <div class="why">Bossche bol cream pastries, a Gothic cathedral that humbles you, southern accents, a market square locals defend.</div>
+        <div class="fare">Fare<b>€13</b></div>
+      </div>
+      <div class="line">
+        <div class="code">D</div>
+        <div class="name">Rotter<em>dam</em></div>
+        <div class="time">From UT Centraal<b>40 min</b></div>
+        <div class="why">The architectural opposite of Utrecht. Cube houses, Markthal, a skyline that doesn't apologise. Big-city day, home by night.</div>
+        <div class="fare">Fare<b>€12</b></div>
+      </div>
+      <div class="line">
+        <div class="code">E</div>
+        <div class="name">The <em>Hague</em></div>
+        <div class="time">From UT Centraal<b>35 min</b></div>
+        <div class="why">Binnenhof courtyard, Plein cafés, a short tram to the Scheveningen boulevard for sea-air without setting foot on a boat.</div>
+        <div class="fare">Fare<b>€13</b></div>
+      </div>
+      <div class="line">
+        <div class="code">F</div>
+        <div class="name">Lei<em>den</em></div>
+        <div class="time">From UT Centraal<b>30 min</b></div>
+        <div class="why">A canal town that feels like Amsterdam if Amsterdam had calmed down. Bookshops, wall-poems on buildings, long café terraces.</div>
+        <div class="fare">Fare<b>€11</b></div>
+      </div>
+    </div>
+
+    <p class="mono ink2" style="margin-top: 18px;">— Amsterdam 27 min but expects a whole day. Skip unless craving crowds. Fares: NS off-peak singles, July 2026.</p>
+  </div>
+</section>
+
+<!-- ============ QUIET EVENINGS ============ -->
+<section id="evenings">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="tag">05 · Quiet Evenings</div>
+      <h2>Things to do <em>before bed.</em></h2>
+      <div class="stamp">Sunset · 22:00 in July</div>
+    </div>
+  </div>
+
+  <div class="quiet">
+    <div class="q">
+      <div class="qn">i</div>
+      <h4>Wharf-level <em>dinner</em></h4>
+      <p>The Oudegracht has a lower level — converted loading wharves now hosting water-level terraces. Book 19:00, watch the canal go green-gold-navy.</p>
+    </div>
+    <div class="q">
+      <div class="qn">ii</div>
+      <h4>Trajectum <em>Lumen</em></h4>
+      <p>Free self-guided light-art walk after dark. 14 installations tucked into alleys and church walls. ~90 minutes, map at the tourist office.</p>
+    </div>
+    <div class="q">
+      <div class="qn">iii</div>
+      <h4>One <em>quiet pint</em></h4>
+      <p>Café Olivier (a converted church) or Café Belgica. Order a Tripel, take a corner. Leave by 22:30 and you've still won the day.</p>
+    </div>
+    <div class="q">
+      <div class="qn">iv</div>
+      <h4>Botanical <em>gardens</em></h4>
+      <p>Utrecht University's gardens close around 17:00. Go late afternoon — greenhouses, butterfly walk, no crowds. Then dinner.</p>
+    </div>
+    <div class="q">
+      <div class="qn">v</div>
+      <h4>Bookshop <em>browse</em></h4>
+      <p>Steven Sterk on Oudegracht is multi-storey, open till 21:00 weekdays. Buy nothing, look at everything, leave smarter.</p>
+    </div>
+    <div class="q">
+      <div class="qn">vi</div>
+      <h4>Park bench <em>sunset</em></h4>
+      <p>Sunset is around 22:00 in July. Lepelenburg or Wilhelminapark. Take a snack, leave the headphones in your bag.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKIPS ============ -->
+<section id="skips">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="tag">06 · Honest Skips</div>
+      <h2>Cancelled <em>for this trip.</em></h2>
+      <div class="stamp">Saying no makes yes better</div>
+    </div>
+
+    <div class="skips">
+      <div class="skip-card">
+        <div class="x-stamp">SKIP</div>
+        <h4><span class="strike">Canal cruise</span></h4>
+        <p>Boats and your stomach disagree, on the record. The wharf-level dinner gets the view without the rocking. Don't let anyone talk you into "but it's a small boat."</p>
+      </div>
+      <div class="skip-card">
+        <div class="x-stamp">SKIP</div>
+        <h4><span class="strike">Pannenkoekenboot</span></h4>
+        <p>Yes, there is a literal pancake-cruise boat. Yes, it sounds delightful. See above — the land version on Friend Day is the better play.</p>
+      </div>
+      <div class="skip-card">
+        <div class="x-stamp">SKIP</div>
+        <h4><span class="strike">Museums</span></h4>
+        <p>Centraal, Spoorweg, Rietveld-Schröder — all genuinely good, none on this trip. Walking, eating, and a tower-climb earn the holiday more than another exhibit.</p>
+      </div>
+      <div class="skip-card">
+        <div class="x-stamp">SKIP</div>
+        <h4><span class="strike">Club nights</span></h4>
+        <p>TivoliVredenburg is a landmark — fine for a daytime tour. The 3am circuit is not this trip's shape. Bed by eleven is the brief.</p>
+      </div>
+      <div class="skip-card">
+        <div class="x-stamp">SKIP</div>
+        <h4><span class="strike">A second day-trip</span></h4>
+        <p>One is plenty. Two means you rented an apartment to barely sleep in it. Stay home Wednesday and earn the city back.</p>
+      </div>
+      <div class="skip-card">
+        <div class="x-stamp">SKIP</div>
+        <h4><span class="strike">A 6am alarm</span></h4>
+        <p>You're 30, not 19, not 60. This is the decade where you sleep eight hours and don't apologise for it. The tower is still there at 09:30.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MANIFEST ============ -->
+<section id="manifest">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="tag">07 · Manifest</div>
+      <h2>Boring <em>important</em> bits.</h2>
+      <div class="stamp">Read once · then forget</div>
+    </div>
+
+    <div class="manifest">
+      <div class="col">
+        <h4>Field Reference <span class="num">07-A</span></h4>
+        <div class="pact-rows">
+          <div class="row"><div class="k">Currency</div><div><b>Euro (€).</b> Cards everywhere. Some viskraam stalls oddly card-only.</div></div>
+          <div class="row"><div class="k">Transport</div><div><b>Walk mostly.</b> Trams/buses on OV-chipkaart or contactless. Trains: NS.</div></div>
+          <div class="row"><div class="k">From airport</div><div><b>Schiphol → Utrecht Centraal</b> · direct intercity, ~35 min, every 15.</div></div>
+          <div class="row"><div class="k">Weather (Jul)</div><div><b>22°C / 13°C.</b> Long days. Sunset 22:00. Pack a sweater &amp; rain shell anyway.</div></div>
+          <div class="row"><div class="k">Bikes</div><div><b>Don't, if nervous.</b> Locals are fast and unforgiving. Walk; only rent Wednesday if mood is right.</div></div>
+          <div class="row"><div class="k">Tipping</div><div><b>Round up · ~5–10%.</b> Service included. Cash on the table.</div></div>
+          <div class="row"><div class="k">Language</div><div><b>English fine.</b> A "dank je wel" buys goodwill. "Lekker" deploys after kibbeling.</div></div>
+          <div class="row"><div class="k">SIM/data</div><div><b>EU roaming.</b> Your home plan works without extra cost.</div></div>
+          <div class="row"><div class="k">Emergency</div><div><b>112</b> all-services · <b>Apotheek</b> pharmacy · <b>Huisartsenpost</b> after-hours.</div></div>
+        </div>
+      </div>
+
+      <div class="col">
+        <h4>Packing Manifest <span class="num">07-B</span></h4>
+        <ul class="pack-list" id="pack-list">
+          <li><label><input type="checkbox"><span class="n">01</span><span class="lbl">Passport / ID</span></label></li>
+          <li><label><input type="checkbox"><span class="n">02</span><span class="lbl">Rain shell · windproof</span></label></li>
+          <li><label><input type="checkbox"><span class="n">03</span><span class="lbl">One warm layer</span></label></li>
+          <li><label><input type="checkbox"><span class="n">04</span><span class="lbl">Walking shoes · broken in</span></label></li>
+          <li><label><input type="checkbox"><span class="n">05</span><span class="lbl">Socks for bowling night</span></label></li>
+          <li><label><input type="checkbox"><span class="n">06</span><span class="lbl">Sunglasses</span></label></li>
+          <li><label><input type="checkbox"><span class="n">07</span><span class="lbl">Charger + EU plug adapter</span></label></li>
+          <li><label><input type="checkbox"><span class="n">08</span><span class="lbl">Power bank</span></label></li>
+          <li><label><input type="checkbox"><span class="n">09</span><span class="lbl">Card + a little cash</span></label></li>
+          <li><label><input type="checkbox"><span class="n">10</span><span class="lbl">Reusable water bottle</span></label></li>
+          <li><label><input type="checkbox"><span class="n">11</span><span class="lbl">Book · the trip-feel one</span></label></li>
+          <li><label><input type="checkbox"><span class="n">12</span><span class="lbl">Ginger sweets · anti-seasick JIC</span></label></li>
+          <li><label><input type="checkbox"><span class="n">13</span><span class="lbl">Tiny first-aid + paracetamol</span></label></li>
+          <li><label><input type="checkbox"><span class="n">14</span><span class="lbl">Friend's phone number · on paper</span></label></li>
+        </ul>
+        <div class="pack-bar-wrap">
+          <div class="pack-bar"><i id="pack-bar"></i></div>
+          <div class="pack-meta"><span id="pack-count">0 / 14</span><span>Saved locally</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap row">
+    <div class="sig">Have a <em>quiet</em> week,<br/>traveller.</div>
+    <div class="meta">
+      Line U7 · Briefing v2<br/>
+      Utrecht · 05.07–09.07.2026<br/>
+      End of document
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // —— Today highlighting
+  function todayISO() {
+    var d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
+  var t = todayISO();
+  document.querySelectorAll('[data-date]').forEach(function (el) {
+    if (el.dataset.date === t) el.classList.add('is-today');
+  });
+
+  // —— Scroll spy
+  var ids = ['route','stops','ops','lines','evenings','skips','manifest'];
+  var sections = ids.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var links = {};
+  document.querySelectorAll('#nav-links a').forEach(function (a) {
+    links[a.getAttribute('href').slice(1)] = a;
+  });
+  function onScroll() {
+    var y = window.scrollY + 100;
+    var current = sections[0] ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].offsetTop <= y) current = sections[i].id;
+    }
+    Object.keys(links).forEach(function (k) {
+      links[k].classList.toggle('active', k === current);
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // —— Packing checklist persistence
+  var LS = 'utrecht-pack-v2';
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(LS) || '{}'); } catch (e) {}
+  var boxes = document.querySelectorAll('#pack-list input[type="checkbox"]');
+  var count = document.getElementById('pack-count');
+  var bar = document.getElementById('pack-bar');
+  function refresh() {
+    var done = 0;
+    boxes.forEach(function (b) { if (b.checked) done++; });
+    count.textContent = String(done).padStart(2,'0') + ' / ' + String(boxes.length).padStart(2,'0');
+    bar.style.width = (done / boxes.length * 100) + '%';
+  }
+  boxes.forEach(function (b, i) {
+    b.checked = !!saved['p' + i];
+    b.addEventListener('change', function () {
+      saved['p' + i] = b.checked;
+      try { localStorage.setItem(LS, JSON.stringify(saved)); } catch (e) {}
+      refresh();
+    });
+  });
+  refresh();
+})();
+</script>
+</body>
+</html>
