@@ -10,8 +10,8 @@ body {
   background: var(--void);
   color: var(--bone);
   font-family: var(--serif);
-  font-size: 17px;
-  line-height: 1.55;
+  font-size: 20px;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   font-feature-settings: "liga", "kern";
