@@ -19,6 +19,7 @@
 .topnav__links a { padding: 10px 14px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bone-3); transition: color 140ms, background 140ms; }
 .topnav__links a:hover  { color: var(--acid); }
 .topnav__links a.active { color: var(--void); background: var(--acid); }
+.topnav__record-link    { border-left: 1px solid var(--void-3) !important; color: var(--bone-2) !important; margin-left: 4px; }
 
 @media (max-width: 880px) {
   .topnav__links { display: none; }

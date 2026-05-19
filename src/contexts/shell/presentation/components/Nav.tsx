@@ -26,6 +26,7 @@ export function Nav() {
               {section.label}
             </a>
           ))}
+          <a href="./report.html" className="topnav__record-link">Record →</a>
         </div>
       </div>
     </nav>
